@@ -6,8 +6,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware }:
   let
     system = "x86_64-linux";
     
@@ -23,6 +24,7 @@
         modules = [ 
           ./system/hosts/cafe-alpha 
           ./user/kokone/system
+          nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
         ];
       };
     };
