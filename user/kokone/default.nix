@@ -1,14 +1,16 @@
 { config, pkgs, lib, ... }: rec {
-  imports = [ ../common.nix ];
+  imports = [ 
+    ../neovim.nix
+  ];
 
   home.username = "kokone";
   home.homeDirectory = "/home/kokone";
 
-  home.packages = [
-    pkgs.neovim
+  home.packages = with pkgs; [
+    # citrix_workspace
   ];
 
-  programs.git.enable = true;
+  # programs.git.enable = true;
   programs.git.userName = "kokone";
   programs.git.userEmail = "kokone@kupo.pw";
   programs.git.extraConfig = {
