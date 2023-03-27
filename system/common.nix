@@ -3,6 +3,7 @@
   nix.settings.max-jobs = "auto";
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
@@ -38,6 +39,9 @@
     wget
     ripgrep
     firefox
+    usbutils
+    pciutils
+    screen
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

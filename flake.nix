@@ -17,6 +17,7 @@
       config.allowUnfree = true;
       overlays = [];
     };
+
   in {
     nixosConfigurations = {
       cafe-alpha = nixpkgs.lib.nixosSystem {
