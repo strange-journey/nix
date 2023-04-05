@@ -11,6 +11,7 @@
     citrix_workspace
     krita
     bitwig-studio
+    wofi
   ];
 
   programs.git.enable = true;
@@ -22,4 +23,33 @@
     };
   };
   programs.git.delta.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+        ll = "ls -l";
+        update-home = "home-manager switch --flake '/home/kokone/nix#kokone'";
+        update-system = "sudo nixos-rebuild switch --flake '/home/kokone/nix#' --override-input nixpkgs github:nixos/nixpkgs/gnome";
+    };
+    enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
+    enableVteIntegration = true;
+    autocd = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = true;
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[x](bold red)";
+        vimcmd_symbol = "[<](bold green)";
+      };
+    };
+  };
+
+  programs.wezterm = {
+    enable = true;
+  };
 }

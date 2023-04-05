@@ -3,7 +3,7 @@
   nix.settings.max-jobs = "auto";
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
+  boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
@@ -15,6 +15,7 @@
   services.xserver.videoDrivers = [ "modesetting" ];
 
   programs.sway.enable = true;
+  programs.hyprland.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -42,6 +43,16 @@
     usbutils
     pciutils
     screen
+    libwacom
+  ];
+
+  programs.zsh.enable = true;
+  environment.pathsToLink = [ "/share/zsh" ];
+  environment.shells = with pkgs; [ zsh ];
+
+  fonts.fonts = with pkgs; [
+    liberation_ttf
+    (nerdfonts.override { fonts = [ "CodeNewRoman" "Hasklig" "Meslo" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
