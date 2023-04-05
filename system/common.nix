@@ -52,7 +52,7 @@
 
   fonts.fonts = with pkgs; [
     liberation_ttf
-    (nerdfonts.override { fonts = [ "CodeNewRoman" "Hasklig" "Meslo" ]; })
+    vistafonts
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,8 +1,10 @@
-{ config, pkgs, citrixPkgs, lib, ... }: rec {
+{ config, pkgs, lib, ... }: rec {
   imports = [ 
     ../common.nix
-    ../../modules/neovim
+    ../../../modules/neovim/nixos
   ];
+
+  home.stateVersion = "22.11";
 
   home.username = "kokone";
   home.homeDirectory = "/home/kokone";
@@ -28,8 +30,8 @@
     enable = true;
     shellAliases = {
         ll = "ls -l";
-        update-home = "home-manager switch --flake '/home/kokone/nix#kokone'";
-        update-system = "sudo nixos-rebuild switch --flake '/home/kokone/nix#' --override-input nixpkgs github:nixos/nixpkgs/gnome";
+        update-home = "home-manager switch --flake '/home/kokone/nix#kokone@cafe-alpha'";
+        update-system = "sudo nixos-rebuild switch --flake '/home/kokone/nix#cafe-alpha' --override-input nixpkgs github:nixos/nixpkgs/gnome";
     };
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;

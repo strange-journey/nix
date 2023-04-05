@@ -1,5 +1,5 @@
 {
-  description = "cafe alpha nix flake";
+  description = "my cool nix flake";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager = {
@@ -11,31 +11,29 @@
   };
   outputs = { self, nixpkgs, home-manager, nixos-hardware, hyprland }:
   let
-    system = "x86_64-linux";
-    
-    pkgs = import nixpkgs {
-      inherit system;
+    linuxPkgs = import nixpkgs {
+      system = "x86_64-linux";
       config.allowUnfree = true;
       overlays = [];
     };
-
   in {
     nixosConfigurations = {
       cafe-alpha = nixpkgs.lib.nixosSystem {
-        inherit system;
+        pkgs = linuxPkgs;
+        system = "x86_64-linux";
         modules = [ 
           ./system/hosts/cafe-alpha 
-          ./user/kokone/system
+          ./user/kokone/nixos/system
           hyprland.nixosModules.default
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
         ];
       };
     };
     homeConfigurations = {
-      kokone = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      "kokone@cafe-alpha" = home-manager.lib.homeManagerConfiguration {
+        pkgs = linuxPkgs;
         modules = [ 
-          ./user/kokone
+          ./user/kokone/nixos
         ];
       };
     };
