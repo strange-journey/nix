@@ -1,8 +1,6 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
-{
+{ config, lib, pkgs, modulesPath, ... }: {
   imports = [ 
-    ../../common.nix
+    ../../nixos.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
