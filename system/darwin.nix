@@ -8,6 +8,7 @@
 
   environment.systemPackages = with pkgs; [
     ripgrep
+    screen
   ];
 
   services.nix-daemon.enable = true;

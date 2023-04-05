@@ -20,6 +20,10 @@
       config.allowUnfree = true;
       overlays = [];
     };
+    darwinPkgs = import nixpkgs {
+      system = "aarch64-darwin";
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations = {
       cafe-alpha = nixpkgs.lib.nixosSystem {
@@ -35,7 +39,7 @@
     };
     darwinConfigurations = {
       mogbook = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
+        system = "aarch64-darwin";
         modules = [
           ./system/hosts/mogbook
         ];
@@ -46,6 +50,12 @@
         pkgs = linuxPkgs;
         modules = [ 
           ./user/kokone/nixos
+        ];
+      };
+      "kokone@mogbook" = home-manager.lib.homeManagerConfiguration {
+        pkgs = darwinPkgs;
+        modules = [
+          ./user/kokone/darwin
         ];
       };
     };
