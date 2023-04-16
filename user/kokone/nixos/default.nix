@@ -16,38 +16,14 @@
     wofi
   ];
 
-  programs.git.enable = true;
   programs.git.userName = "kokone";
   programs.git.userEmail = "kokone@kupo.pw";
-  programs.git.extraConfig = {
-    init = {
-      defaultBranch = "main";
-    };
-  };
   programs.git.delta.enable = true;
 
   programs.zsh = {
-    enable = true;
     shellAliases = {
-        ll = "ls -l";
         update-home = "home-manager switch --flake '/home/kokone/nix#kokone@cafe-alpha'";
         update-system = "sudo nixos-rebuild switch --flake '/home/kokone/nix#cafe-alpha' --override-input nixpkgs github:nixos/nixpkgs/gnome";
-    };
-    enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
-    enableVteIntegration = true;
-    autocd = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      character = {
-        success_symbol = "[>](bold green)";
-        error_symbol = "[x](bold red)";
-        vimcmd_symbol = "[<](bold green)";
-      };
     };
   };
 

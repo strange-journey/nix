@@ -36,9 +36,18 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
         ];
       };
+      musashino = nixpkgs.lib.nixosSystem {
+        pkgs = linuxPkgs;
+        system = "x86_64-linux";
+        modules = [
+          ./system/hosts/musashino
+          ./user/kokone/nixos/system
+        ];
+      };
     };
     darwinConfigurations = {
       mogbook = darwin.lib.darwinSystem {
+        pkgs = darwinPkgs;
         system = "aarch64-darwin";
         modules = [
           ./system/hosts/mogbook
