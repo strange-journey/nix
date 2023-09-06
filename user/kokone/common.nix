@@ -2,6 +2,7 @@
   imports = [ 
     ../common.nix
     ../../modules/neovim
+    ../../modules/doom-emacs
   ];
 
   programs.zsh = {
@@ -21,7 +22,9 @@
         gst = "git status";
     };
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
     enableVteIntegration = true;
     autocd = true;
   };

@@ -12,8 +12,9 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     hyprland.url = "github:hyprwm/hyprland";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
-  outputs = { self, nixpkgs, darwin, home-manager, nixos-hardware, hyprland }:
+  outputs = { self, nixpkgs, darwin, home-manager, nixos-hardware, hyprland, nix-doom-emacs }:
   let
     linuxPkgs = import nixpkgs {
       system = "x86_64-linux";
@@ -23,6 +24,7 @@
     darwinPkgs = import nixpkgs {
       system = "aarch64-darwin";
       config.allowUnfree = true;
+      overlays = [];
     };
   in {
     nixosConfigurations = {
@@ -65,6 +67,7 @@
         pkgs = darwinPkgs;
         modules = [
           ./user/kokone/darwin
+	  nix-doom-emacs.hmModule
         ];
       };
     };

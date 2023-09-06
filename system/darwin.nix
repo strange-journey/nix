@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     ripgrep
     screen
+    nodejs
   ];
 
   services.nix-daemon.enable = true;
